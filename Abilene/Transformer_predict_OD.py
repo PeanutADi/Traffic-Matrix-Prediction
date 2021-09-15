@@ -63,7 +63,6 @@ class Transformer(nn.Module):
         self.transformer_encoder = nn.TransformerEncoder(self.encoder_layer, num_layers=num_layers)
         self.decoder = nn.Linear(feature_size, 1) 
         self.init_weights()
-        self.src_key_padding_mask = None 
 
     def init_weights(self):  
         initrange = 0.1
@@ -71,9 +70,6 @@ class Transformer(nn.Module):
         self.decoder.weight.data.uniform_(-initrange, initrange)
 
     def forward(self, src, src_padding=True):
-        if self.src_key_padding_mask is None:
-            mask_key = src_padding.bool()
-            self.src_key_padding_mask = mask_key
 
         src = self.pos_encoder(src)
         output = self.transformer_encoder(src)  
