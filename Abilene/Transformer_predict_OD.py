@@ -70,7 +70,7 @@ class Transformer(nn.Module):
         self.decoder.bias.data.zero_()
         self.decoder.weight.data.uniform_(-initrange, initrange)
 
-    def forward(self, src, src_padding):
+    def forward(self, src, src_padding=True):
         if self.src_key_padding_mask is None:
             mask_key = src_padding.bool()
             self.src_key_padding_mask = mask_key
