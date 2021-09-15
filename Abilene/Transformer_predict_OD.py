@@ -39,7 +39,7 @@ class RNN(nn.Module):
 
 class Transformer(nn.Module):
     def __init__(self, feature_size=512, num_layers=1, dropout=0):
-        super(TransAm, self).__init__()
+        super(Transformer, self).__init__()
         self.model_type = 'Transformer'
         self.src_mask = None
         self.pos_encoder = PositionalEncoding(feature_size) 
