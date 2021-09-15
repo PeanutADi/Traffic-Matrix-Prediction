@@ -76,7 +76,7 @@ class Transformer(nn.Module):
             self.src_key_padding_mask = mask_key
 
         src = self.pos_encoder(src)
-        output = self.transformer_encoder(src, self.src_mask, self.src_key_padding_mask)  
+        output = self.transformer_encoder(src)  
         output = self.decoder(output)
         return output
 
