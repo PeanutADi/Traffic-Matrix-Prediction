@@ -39,7 +39,7 @@ class RNN(nn.Module):
 
 #### positional encoding ####
 class PositionalEncoding(nn.Module):
-    def __init__(self, d_model, max_len=50):
+    def __init__(self, d_model, max_len=128):
         super(PositionalEncoding, self).__init__()
         pe = torch.zeros(max_len, d_model)
         position = torch.arange(0, max_len, dtype=torch.float).unsqueeze(1)
@@ -194,7 +194,7 @@ class PridictTM():
             # print(OD_list)
             data, max_value, min_value = self.read_data(self.file_name, OD)
             x_data, y_data = self.generate_series(data, self.k)
-            train_len = int(int(len(x_data) * 0.8) / 50) * 50
+            train_len = int(int(len(x_data) * 0.8) / 128) * 128
             data_loader = self.generate_batch_loader(x_data[:train_len], y_data[:train_len])
 
             self.rnn = Transformer(self.input_size, 1, 0)
