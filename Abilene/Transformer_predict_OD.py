@@ -54,7 +54,7 @@ class PositionalEncoding(nn.Module):
         return x + self.pe[:x.size(0), :]
 
 class Transformer(nn.Module):
-    def __init__(self, feature_size=512, num_layers=1, dropout=0):
+    def __init__(self, feature_size=512, num_layers=1, dropout=0, batch_first = True):
         super(Transformer, self).__init__()
         self.model_type = 'Transformer'
         self.src_mask = None
@@ -70,7 +70,6 @@ class Transformer(nn.Module):
         self.decoder.weight.data.uniform_(-initrange, initrange)
 
     def forward(self, src, src_padding=True):
-
         src = self.pos_encoder(src)
         output = self.transformer_encoder(src)  
         output = self.decoder(output)
