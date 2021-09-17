@@ -61,7 +61,7 @@ class Transformer(nn.Module):
         self.pos_encoder = PositionalEncoding(feature_size) 
         self.encoder_layer = nn.TransformerEncoderLayer(d_model=feature_size, nhead=1, dropout=dropout) 
         self.transformer_encoder = nn.TransformerEncoder(self.encoder_layer, num_layers=num_layers)
-        self.decoder = nn.Linear(feature_size, 1) 
+        self.decoder = nn.Linear(feature_size, feature_size) 
         self.init_weights()
 
     def init_weights(self):  
